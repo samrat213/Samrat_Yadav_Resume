@@ -1,0 +1,399 @@
+% FortySecondsCV LaTeX template
+% Copyright © 2019-2020 René Wirnata <rene.wirnata@pandascience.net>
+% Licensed under the 3-Clause BSD License. See LICENSE file for details.
+%
+% Please visit https://github.com/PandaScience/FortySecondsCV for the most
+% recent version! For bugs or feature requests, please open a new issue on
+% github.
+%
+% Contributors
+% ------------
+% * ifokkema
+% * Bertbk
+% * Hespe
+%
+% Attributions
+% ------------
+% * fortysecondscv is based on the twentysecondcv class by Carmine Spagnuolo
+%   (cspagnuolo@unisa.it), released under the MIT license and available under
+%   https://github.com/spagnuolocarmine/TwentySecondsCurriculumVitae-LaTex
+% * further attributions are indicated immediately before corresponding code
+
+
+%-------------------------------------------------------------------------------
+%                             ADDITIONAL PACKAGES
+%-------------------------------------------------------------------------------
+\documentclass[
+	a4paper,
+	% showframes,
+	% vline=2.2em,
+	% maincolor=cvgreen,
+	% sidecolor=gray!50,
+	% sectioncolor=red,
+	% subsectioncolor=orange,
+	% itemtextcolor=black!80,
+	% sidebarwidth=0.9\paperwidth,
+	% topbottommargin=0.03\paperheight,
+	% leftrightmargin=20pt,
+	% profilepicsize=4.5cm,
+	% profilepicborderwidth=3.5pt,
+	% profilepicstyle=profilecircle,
+	% profilepiczoom=1.0,
+	% profilepicxshift=0mm,
+	% profilepicyshift=0mm,
+	% profilepicrounding=1.0cm,
+]{fortysecondscv}
+
+% improve word spacing and hyphenation
+\usepackage{microtype}
+\usepackage{ragged2e}
+
+% uncomment in case you don't want any hyphenation
+% \usepackage[none]{hyphenat}
+
+% take care of proper font encoding
+\ifxetexorluatex
+	\usepackage{fontspec}
+	\defaultfontfeatures{Ligatures=TeX}
+%	\newfontfamily\headingfont[Path = fonts/]{segoeuib.ttf} % local font
+\else
+	\usepackage[utf8]{inputenc}
+	\usepackage[T1]{fontenc}
+%	\usepackage[sfdefault]{noto} % use noto google font
+\fi
+
+% enable mathematical syntax for some symbols like \varnothing
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{fontawesome}
+% bubble diagram configuration
+\usepackage{smartdiagram}
+\smartdiagramset{
+	% default font size is \large, so adjust to harmonize with sidebar layout
+	bubble center node font = \footnotesize,
+	bubble node font = \footnotesize,
+	% default: 4cm/2.5cm; make minimum diameter relative to sidebar size
+	bubble center node size = 0.4\sidebartextwidth,
+	bubble node size = 0.25\sidebartextwidth,
+	distance center/other bubbles = 1.5em,
+	% set center bubble color
+	bubble center node color = maincolor!70,
+	% define the list of colors usable in the diagram
+	set color list = {maincolor!10, maincolor!40,
+	maincolor!20, maincolor!60, maincolor!35},
+	% sets the opacity at which the bubbles are shown
+	bubble fill opacity = 0.8,
+}
+% \documentclass[12pt]{amsbook}
+
+
+
+
+
+\usepackage{fontawesome}
+
+\newcommand{\givenfacebook}{}
+\newcommand{\givenlinkedin}{}
+
+\newcommand{\cvfacebook}[1]{\renewcommand{\givenfacebook}{#1}}
+\newcommand{\cvlinkedin}[1]{\renewcommand{\givenlinkedin}{#1}}
+
+\renewcommand{\makeprofile}
+{
+\begin{tikzpicture}[remember picture,overlay]
+     \node [rectangle, fill=asidecolor, anchor=north, minimum width=9.90cm, minimum height=\paperheight+1cm] (box) at (-5cm,0.5cm){};
+\end{tikzpicture}
+\begin{textblock}{6}(0.5, 0.2)
+\begin{flushleft}
+\hspace{13pt}
+\begin{tikzpicture}[x=\imagescale,y=-\imagescale]
+    \clip (600/2, 567/2) circle (567/2);
+
+        \node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{\givenprofilepic}};
+\end{tikzpicture}
+
+{\Huge\color{mainblue}\givencvname}
+
+\begin{flushright}
+{\Large\color{black!80}\givencvjobtitle}
+\end{flushright}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{p{0.5cm} @{\hskip 0.5cm}p{5cm}}
+\ifthenelse{\equal{\givencvdate}{}}{}{\textsc{\Large\icon{\Info}} & \givencvdate\\}
+\ifthenelse{\equal{\givencvaddress}{}}{}{\textsc{\Large\icon{\Letter}} & \givencvaddress\\}
+\ifthenelse{\equal{\givennumberphone}{}}{}{\textsc{\Large\icon{\Telefon}} & \givennumberphone\\}
+\ifthenelse{\equal{\givencvsite}{}}{}{\textsc{\Large\icon{\Mundus}} & \givencvsite}\\
+\ifthenelse{\equal{\givenfacebook}{}}{}{\textsc{\large\icon{\faFacebook}} & \href{http://www.facebook.com/\givenfacebook }{\givencvname}\\}
+\ifthenelse{\equal{\givenlinkedin}{}}{}{\textsc{\large\icon{\faLinkedin}} & \href{http://www.linkedin.com/in/\givenlinkedin }{\givencvname}\\}
+\ifthenelse{\equal{\givencvmail}{}}{}{\textsc{\large\icon{@}} & \href{mailto:\givencvmail}{\givencvmail}}
+\end{tabular}
+\profilesection{About me}{3.2cm}
+\givenaboutme
+
+
+\profilesection{Skill}{5cm}
+\givenskill
+\giventextskill
+\noindent
+\scriptsize
+\noindent
+(*)[The skill scale is from 0 (Fundamental Awareness) to 6 (Expert).]
+
+\end{flushleft}
+\end{textblock}
+\vspace{-10pt}
+}
+
+
+
+
+
+
+
+\usepackage{graphicx}
+\begin{document}
+%-------------------------------------------------------------------------------
+%                            PERSONAL INFORMATION
+%-------------------------------------------------------------------------------
+%% mandatory information
+% your name
+\cvname{Samrat Yadav}
+% job title/career
+\cvjobtitle{MTech AI, IISc (Ongoing)}
+
+%% optional information
+% profile picture
+
+
+% NOTE: ordering in sidebar will mimic the following order
+% date of birth
+%\cvbirthday{March 31, 1995}
+% short address/location, use \newline if more than 1 line is required
+% email address
+\cvmail{samratya09@gmail.com}
+% \cvmail{prakharg@iisc.ac.in}
+% phone number
+\cvphone{+91-8955262578}
+% \cvphone{live:.cid.cfd5cfebdae26fdb}
+% personal website
+\cvsite{https://www.linkedin.com/in/samratya09/}
+\cvsite{https://github.com/samrat213}
+
+\vspace{-5pt}
+%-------------------------------------------------------------------------------
+%                              SIDEBAR 1st PAGE
+%-------------------------------------------------------------------------------
+% add more profile sections to sidebar on first page
+\addtofrontsidebar{
+	% include gosquare national flags from https://github.com/gosquared/flags;
+	% naming according to ISO 3166-1 alpha-2 country codes
+	\profilesection{About Me}\vspace{-5pt}
+	\aboutme{\vspace{-1pt}
+    I am enthusiastic and keen on learning and researching, currently working under prof. Prathosh A P, IISc Bangalore. Exploring various fields in Machine Learning and Deep Learning, and am particularly keen on learning new things and their applicability to real-world problems.
+	}
+	% social network accounts incl. proper hyperlinks
+
+%	\profilesection{Core Competencies}
+%		\skill{\faCompress}{Data Analysis}
+%		\skill{\faCompress}{Business Analysis}
+%		\skill{\faCompress}{PNL Generation}
+%		\skill{\faCompress}{Process Improvement}
+%		\skill{\faCompress}{Cross Functional Coordination}
+\iffalse
+	\profilesection{Skills}\vspace{-4pt}
+	\begin{multicols}{}
+        \skill{\faCompress}{PyTorch}
+        \skill{\faCompress}{Python}
+        \skill{\faCompress}{C/C++}
+    \columnbreak
+		\skill{\faCompress}{Excel}
+		{\faCompress}{Soft Skills: Communicator, Innovator, Thinker, Collaborator, Intuitive}
+    \end{multicols}
+	\profilesection{Soft Skills}
+		\skill{\faCompress}{Communicator}
+		\skill{\faCompress}{Innovator}
+		\skill{\faCompress}{Thinker}
+		\skill{\faCompress}{Collaborator}
+		\skill{\faCompress}{Intuitive}
+\fi	
+\vspace{-8pt}
+	\profilesection{Skills}\vspace{-5pt}
+	\skill{\faCompress}{\textbf{Languages:} Python, C, SQL \vspace{+1pt}}
+	\skill{\faCompress}{\textbf{Tools:} PyTorch, TensorFlow, Keras, Excel, MATLAB, HuggingFace, Tableau, RedShift, AWS, Looker, Metabase \vspace{+1pt}}
+	\skill{\faCompress}{\textbf{Industry:} Machine Learning, Deep Learning, Natural Language Processing, Computer Vision, Reinforcement Learning, Data Analytics, Data Visualization, Business Analytics, Business Planning}
+
+\vspace{-5pt}		
+	\profilesection{ Relevant Courses}\vspace{-7pt}
+		\skill{\faCompress}{Advanced Deep Representation Learning}
+% 		\vspace{-3pt}
+		\skill{\faCompress}{Pattern Recognition \& Neural Networks}
+% 		\vspace{-3pt}
+		\skill{\faCompress}{Machine Learning For Signal Processing}
+% 		\vspace{-3pt}
+		\skill{\faCompress}{Stochastic Models \& Applications}
+% 		\vspace{-3pt}
+		\skill{\faCompress}{Computational Linear Algebra}
+% 		\vspace{-3pt}		
+        \skill{\faCompress}{Data Structures \& Algorithms}		
+% 		\vspace{-3pt}        
+        \skill{\faCompress}{Reinforcement Learning}
+% 		\vspace{-3pt}        
+        \skill{\faCompress}{Computational Methods of Optimization}
+% 		\vspace{-3pt}        
+	
+% 		\skill{\faCompress}{NLP with Deep Learning, Stanford University (self-studied)}
+% 		\vspace{-3pt}	
+
+
+\vspace{-5pt}		
+	\profilesection{Achievements}\vspace{-7pt}
+		\skill{\faCompress}{Scored in 1\% JEE-Adv 2015}
+		\skill{\faCompress}{AIR 465 in GATE'2021 CSE}
+
+		
+    	
+\vspace{-5pt}
+	\profilesection{Responsibilities}\vspace{-7pt}
+		\skill{\faCompress}{City Representative, Techniche, IIT Guwahati}
+
+	
+
+}
+
+
+%-------------------------------------------------------------------------------
+%                              SIDEBAR 2nd PAGE
+%-------------------------------------------------------------------------------
+\addtobacksidebar{
+
+
+
+
+}
+
+
+%-------------------------------------------------------------------------------
+%                         TABLE ENTRIES RIGHT COLUMN
+%-------------------------------------------------------------------------------
+
+
+\makefrontsidebar
+
+
+\cvsection{Education\vspace{-06pt}}
+% \cvsection{Education}
+\begin{cvtable}[1.5]
+    \cvitem{}{\hspace{-72} Indian Institute of Science, Bangalore}{Aug'21 -- Present}{\hspace{-69pt}\emph{MTech in Artificial Intelligence}}
+    \cvitem{}{\hspace{-72} Indian Institute of Technology, Guwahati}{Jul'13 -- Jun'17}{\hspace{-69pt}\emph{BTech in Computer Science and Engineering}}
+\end{cvtable}
+
+\vspace{-2pt}
+
+\cvsection{Academic Projects\vspace{-03pt}}
+% \cvsection{Academic Projects}
+\begin{cvtable}[0.5]
+    
+	\cvitem{}{\hspace{-72pt} Novel View Synthesis using few images}{Jun'22 -- Present}{\hspace{-69}\emph{Prof. Prathosh AP, IISc Bangalore (Master's Thesis)} \vspace{-5pt}
+	\begin{itemize}[leftmargin=-2cm]
+    \item Use GAN to c. \vspace{-5pt}
+    \item In a modular approach, currently working on, \textbf{Language Understanding} module, to extract information. Working on \textbf{Knowledge Graphs, Intent classification and Slot labelling, Multi-label Classification using Language Models (BERT)}.\vspace{-5pt}
+    \item \textbf{Scene Graph Generation} module to store relations between objects detected in an indoor environment for navigation purposes.
+	\end{itemize}
+}
+	\cvitem{}{\hspace{-72pt} Spoken Keyword Spotting}{Apr'22 -- Present}{\hspace{-69}\emph{Prof. Prasanta Kumar Ghosh, IISc Bangalore} \vspace{-5pt}
+	\begin{itemize}[leftmargin=-2cm]
+    \item To identify predefined (keywords) from speech. Due to its always-on nature, exploring a hybrid system using \textbf{Convolutional Neural Networks} and \textbf{Support Vector Machines} for the task.
+	\end{itemize}
+}
+
+	\cvitem{}{\hspace{-72pt} GNNs for Social Recommendation}{Nov'21 -- Dec'21}{\hspace{-69}\emph{Prof. Sriram Ganapathy, IISc Bangalore}\vspace{-5pt}
+	\begin{itemize}[leftmargin=-2cm]
+    \item Implemented a Social Recommendation system, focussing on social relations among users and their opinion on items. Used \textbf{GCN with attention network} to deal with heterogeneous strengths of social relations.
+	\end{itemize}
+}  
+
+% 	\cvitem{}{\hspace{-72pt} Multi-hop Question Answering using Knowledge Graphs}{Sep'21 -- Present}{\hspace{-69}\emph{Prof. Bharadwaj Amrutur, IISc Bangalore} \vspace{-5pt}
+% 	\begin{itemize}[leftmargin=-2cm]
+%     \item For each question, built a local Knowledge Graph (KG) from ConceptNet, question and choice entities with additional entities up to 2 hop distance taken. \vspace{-5pt}
+%     \item Used GNNs with attention network to apply reasoning on the local KG. Based on QA-GNN architecture.	
+% 	\end{itemize}
+% }
+
+	\cvitem{}{\hspace{-72pt} Visual Storytelling}{Oct'21 -- Nov'21}{\hspace{-69}\emph{Prof. Sriram Ganapathy, IISc Bangalore} \vspace{-5pt}
+	\begin{itemize}[leftmargin=-2cm]
+    \item Generated stories from a set of 5 related images with an \textbf{end-to-end seq2seq} architecture. Used ResNet-50 for generating image features, BiLSTMs to generate global context and LSTMs for decoder. Implementation of GLACNet architecture. \end{itemize}    
+}
+	\cvitem{}{\hspace{-72pt} One-shot localization using Siamese Networks}{Sep'21 -- Oct'21}{\hspace{-69}\emph{Prof. Shishir Kolathaya, IISc Bangalore} \vspace{-5pt}
+	\begin{itemize}[leftmargin=-2cm]
+    \item An end-to-end Siamese network is used to learn the cue, infer the object of interest, and then to localize it in new environments
+	\end{itemize}
+}
+
+	\cvitem{}{\hspace{-72pt} Modelling Covid19 projections for Karnataka}{Aug'21 -- Sep'21}{\hspace{-69}\emph{Prof. Rajesh Sundaresan, IISc Bangalore} \vspace{-5pt}
+	\begin{itemize}[leftmargin=-2cm]
+    \item To predict the parameters of an agent-based \textbf{SEIR model} for projecting daily infection cases for the next 42 days across all the districts of Karnataka.
+	\end{itemize}
+}
+
+
+
+\end{cvtable}
+
+
+
+\vspace{-14.5pt}
+
+
+
+% \cvsection{Internships\vspace{-07pt}}
+% \begin{cvtable}[1.5]
+%     \cvitem{}{\hspace{-72} Graphene based Optoelectronic Modulators}{May'16 -- Jul'16}{\hspace{-69pt}\emph{Prof. Vivek Dixit, IIT Kharagpur}}
+%     \cvitem{}{\hspace{-72} Wireless Data transfer through white LED}{May'15 -- Jul'15}{\hspace{-69pt}\emph{Prof. Suvra Sekhar Das, IIT Kharagpur}}
+% \end{cvtable}
+
+
+
+\cvsection{Work Experience\vspace{-03pt}}
+% \cvsection{Work Experience}
+\begin{cvtable}[0.5]
+	\cvitem{}{\hspace{-72} Software Engineer}{Jul'19 -- Sep'20}
+	{\hspace{-72} \emph{Altair India pvt. Ltd., Bengaluru}
+	\vspace{-5pt}
+	\begin{itemize}[leftmargin=-2cm]
+	\item Undo/Redo Functionality: Added Undo/Redo functionality to Altair HyperWorks/Hypermesh software.
+
+	\end{itemize}
+	}
+
+\end{cvtable}
+\vspace{-15pt}
+
+%---------------------------------------------------------
+
+%---------------------------------------------------------
+
+
+%\newpage
+%\makebacksidebar
+% \newgeometry{
+% 	top=\topbottommargin,
+% 	bottom=\topbottommargin,
+% 	right=\leftrightmargin,
+% 	left=\leftrightmargin
+% }
+
+
+
+
+
+
+
+
+
+
+
+
+\iffalse
+\cvsignature
+\fi
+\end{document}
